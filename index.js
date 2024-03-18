@@ -124,8 +124,8 @@ app.get("/temp/:id", async (req, res) => {
   try {
     const { id } = req.params;
 
-    // Find the temperature data by ID
-    const temperature = await Temperature.findById(id);
+    // Find the temperature data by ID, excluding _id field
+    const temperature = await Temperature.findById(id).select("-_id");
 
     if (!temperature) return res.status(404).send("Temperature data not found");
 
@@ -140,8 +140,8 @@ app.get("/heart/:id", async (req, res) => {
   try {
     const { id } = req.params;
 
-    // Find the heart rate data by ID
-    const heartRate = await HeartRate.findById(id);
+    // Find the heart rate data by ID, excluding _id field
+    const heartRate = await HeartRate.findById(id).select("-_id");
 
     if (!heartRate) return res.status(404).send("Heart rate data not found");
 
@@ -156,8 +156,8 @@ app.get("/Inbody/:id", async (req, res) => {
   try {
     const { id } = req.params;
 
-    // Find the Weight data by ID
-    const foundInbody = await Inbody.findById(id);
+    // Find the Weight data by ID, excluding _id field
+    const foundInbody = await Inbody.findById(id).select("-_id");
 
     if (!foundInbody) return res.status(404).send("Inbody data not found");
 
