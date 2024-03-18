@@ -44,6 +44,12 @@ const app = express();
 // Middleware for parsing JSON bodies
 app.use(express.json());
 
+app.use((req, res, next) => {
+  res.setHeader("Access-Control-Allow-Origin", "*");
+  res.setHeader("Access-Control-Allow-Headers", "Content-Type");
+  next();
+});
+
 // PATCH route to update temperature data
 app.patch("/temp/:id", async (req, res) => {
   try {
